@@ -3,56 +3,45 @@ import java.util.Scanner;
 
 public class Pedido {
 
-    String op = "";
     Scanner tec = new Scanner(System.in);
     Usuario usuario;
     Restaurante restaurante;
     double conta = 0.0;
-    ArrayList<String> pedidos= new ArrayList<>();
+    ArrayList<Lanche> listPedidos= new ArrayList<>();
 
-    public Pedido(){
-
-    }
     public Pedido(Usuario usuario, Restaurante restaurante) {
         this.restaurante = restaurante;
         this.usuario = usuario;
         System.out.println(this.restaurante.getNameRest());
         System.out.println(this.usuario.getNome());
     }
-//--------------------------------------*-----------------------------------------------
-    public void fazerPedido(){
 
-        System.out.println("\n--- COMANDA DE PEDIDO ---");
+    public Pedido() {
+
+    }
+
+    //--------------------------------------*-----------------------------------------------
+    public void fazerPedido(){
         restaurante.imprimirCardapio();
-        System.out.println("\n- Número do Pedido: ");
-        int id = tec.nextInt();
+
+        System.out.println("\n- Qual lanche deseja Comprar: ");
+        int idlp = tec.nextInt();
+        idlp -= 1;
         tec.nextLine();
 
-        pedidos.add(restaurante.listLanches.get(id).getNomeLanche());
-        conta += restaurante.listLanches.get(id).getPrecoLanche();
+        conta += restaurante.listLanches.get(idlp).getPrecoLanche();
 
-        System.out.println("Deseja Pedir Mais itens?(S - SIM/ N - NÃO): ");
-        op = tec.nextLine();
-
-        if(op.equalsIgnoreCase("S")){
-          fazerPedido();
-        }
-        else if(op.equalsIgnoreCase("N")) {
-            System.out.println("");
-        }
-        else{
-            System.out.println("! Digite Apenas S ou N !");
-            fazerPedido();
-        }
+        listPedidos.add(restaurante.listLanches.get(idlp));
+        System.out.println(restaurante.listLanches.get(idlp));
     }
 
     @Override
     public String toString() {
-        return "Pedido: " + pedidos.toString();
+        return "Pedido: " + listPedidos.toString();
     }
     //Usuários
     public void imprimirPedido(){
-        for (String pedido: pedidos) {
+        for (Lanche pedido: listPedidos) {
             System.out.println(pedido);
         }
         System.out.printf("TOTAL: %.2f", conta);

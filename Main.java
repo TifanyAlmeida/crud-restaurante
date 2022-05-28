@@ -1,25 +1,10 @@
-//        1 - okk
-//        2 - okk
-//        3 - okk (reconhece a diferen√ßa entre restaurantes)
-//        4 - okk
-//        5 - okk
-//        8 - okk
-//
-//
-//        4 - atualizar o id
-//
-//
-//        6 - erro ao fazer pedido
-//        7 - erro
-
-
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
 
         Scanner tec = new Scanner(System.in);
-        int op;
+        int op, idc = 0, idr = 0;
 
         Aplicativo aplicativo = new Aplicativo();
         Restaurante restaurante = new Restaurante();
@@ -30,15 +15,15 @@ public class Main {
             System.out.println("\n\t\tCadastre - se: ");
             System.out.println("\n\n\t\t1 - Cadastrar Restaurante");
             System.out.println("\t\t2 - Cadastrar Clientes");
-            System.out.println("\t\t3 - Cadastrar Item no Card√°pio");
-            System.out.println("\t\t4 - Remover Item do Card√°pio");
-            System.out.println("\t\t5 - Imprimir Card√°pio");
+            System.out.println("\t\t3 - Cadastrar Item no Card·pio");
+            System.out.println("\t\t4 - Remover Item do Card·pio");
+            System.out.println("\t\t5 - Imprimir Card·pio");
             System.out.println("\t\t6 - Fazer Pedido");
             System.out.println("\t\t7 - Imprimir Pedido");
 
             System.out.println("\t\t8 - Sair");
 
-            System.out.println("\n- Op√ß√£o: ");
+            System.out.println("\n- OpÁ„o: ");
 
             op = tec.nextInt();
             tec.nextLine();
@@ -52,19 +37,17 @@ public class Main {
                     aplicativo.cadastrarClientes();
                     break;
                 case 3:
-                    System.out.println("\n\t|*||*||*| LISTA DE RESTAURANTES |*||*||*|");
-                    System.out.println("\n\t\tID\t\tRestaurante\t\tCNPJ\n\t\t\t\t\n");
                     aplicativo.imprimirRestaurante();
 
                     System.out.println("\n- Deseja Adicionar o Lanche a qual Restaurante: ");
                     int idAddRest = tec.nextInt();
                     tec.nextLine();
+
                     System.out.println("\n\t------------------------------------");
                     aplicativo.listRestaurantes.get(idAddRest-1).adicionarLanche();
                     break;
+
                 case 4:
-                    System.out.println("\n\t|*||*||*| LISTA DE RESTAURANTES |*||*||*|");
-                    System.out.println("\n\t\tID\t\tRestaurante\t\tCNPJ\n\t\t\t\t\n");
                     aplicativo.imprimirRestaurante();
 
                     System.out.println("\n- Deseja Remover o Lanche de qual Restaurante: ");
@@ -83,15 +66,28 @@ public class Main {
                     }
                     break;
                 case 6:
-                    for (int i = 0; i < aplicativo.listRestaurantes.size(); i++) {
-                        Pedido pedido = new Pedido(aplicativo.listClientes.get(i),aplicativo.listRestaurantes.get(i));
-                        pedido.fazerPedido();
-                    }
 
+                    aplicativo.imprimirCliente();
+                    System.out.println("\n- Deseja comprar lanche em qual Conta: ");
+                    idc = tec.nextInt();
+                    tec.nextLine();
+
+                    aplicativo.imprimirRestaurante();
+                    System.out.println("\n- Deseja comprar lanche de qual Restaurante: ");
+                    idr = tec.nextInt();
+                    tec.nextLine();
+
+                    Pedido pedido = new Pedido(aplicativo.listClientes.get(idc-1),aplicativo.listRestaurantes.get(idr-1));
+                    for (int i = 0; i < aplicativo.listRestaurantes.size(); i++) {
+                        aplicativo.listRestaurantes.get(i).imprimirCardapio();
+                    }
+                    pedido.fazerPedido();
                     break;
-//                case 7:
-//                    pedido.imprimirPedido();
-//                    break;
+                case 7:
+
+                    Pedido pedidos = new Pedido(aplicativo.listClientes.get(idc-1), aplicativo.listRestaurantes.get(idr-1));
+                    pedidos.imprimirPedido();
+                    break;
                 default:
                     if (op != 8) {
                         System.out.println("* Erro: Digite Apenas Itens do Menu!");

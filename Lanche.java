@@ -3,21 +3,16 @@ public class Lanche {
     private double precoLanche;
     private int idLanc;
 
-    public Lanche(){
-
+    public Lanche(int idLanc, String nomeLanche, double precoLanche){
+        this.idLanc = idLanc;
+        this.nomeLanche = nomeLanche;
+        this.precoLanche = precoLanche;
     }
-
     public String getNomeLanche() {
         return nomeLanche;
     }
     public double getPrecoLanche() {
         return precoLanche;
-    }
-
-    public Lanche(int idLanc, String nomeLanche, double precoLanche){
-        this.idLanc = idLanc;
-        this.nomeLanche = nomeLanche;
-        this.precoLanche = precoLanche;
     }
 
     public void setNomeLanche(String nomeLanche) {

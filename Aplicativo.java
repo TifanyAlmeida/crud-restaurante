@@ -27,22 +27,18 @@ public class Aplicativo {
         idRest += 1;
 
         listRestaurantes.add(new Restaurante(idRest, nome, identificacao));
+        imprimirRestaurante();
+        System.out.println("\n\t------------------------------------");
+    }
 
+    public void imprimirRestaurante(){
         System.out.println("\n\t|*||*||*| LISTA DE RESTAURANTES |*||*||*|");
         System.out.println("\n\t\tID\t\tRestaurante\t\tCNPJ\n\t\t\t\t\n");
 
         for (Restaurante restaurante : listRestaurantes) {
             System.out.println("\t\t"+restaurante);
         }
-        System.out.println("\n\t------------------------------------");
     }
-
-    public void imprimirRestaurante(){
-        for (Restaurante restaurante : listRestaurantes) {
-            System.out.println("\t\t"+restaurante);
-        }
-    }
-    //----------------------------------------------------------------------------------
 
     //-------------------------------- Clientes ---------------------------------------
     public void cadastrarClientes(){
@@ -59,15 +55,18 @@ public class Aplicativo {
         String endereco = tec.nextLine();
 
         idCliente += 1;
-        listClientes.add(new Usuario(idCliente, nome, endereco, identificacao));
 
-        System.out.println("\n\t|C||C||C||C| LISTA DE CLIENTES |C||C||C||C|");
+        listClientes.add(new Usuario(idCliente, nome, endereco, identificacao));
+        imprimirCliente();
+        System.out.println("\t------------------------------------");
+    }
+    public void imprimirCliente(){
+        System.out.println("\n\t|*||*|*||*| LISTA DE USUÁRIOS |*||*||*||*|");
         System.out.println("\t\tID\t\tCliente\t\tCPF\t\tEndereço\n");
 
         for (Usuario usuario : listClientes) {
             System.out.println("\t\t"+usuario);
         }
-        System.out.println("\t------------------------------------");
     }
     //----------------------------------------------------------------------------------
 }

@@ -11,20 +11,23 @@ public class Restaurante {
     private String cnpj;
     private int idLanc;
 
-    //---------------  CONSTRUTORES, GETTERS E SETTERS ---------------------------
-    public Restaurante() {
+    //---------------  CONSTRUTORES, GETTERS E SETTERS ---------------------------//
 
-    }
-    public Restaurante(int idRest, String nameRest,String cnpj) {
+    public Restaurante(int idRest, String nameRest, String cnpj) {
         this.nameRest = nameRest;
         this.idRest = idRest;
         this.cnpj = cnpj;
     }
 
+    public Restaurante() {
+
+    }
+
     public void setNameRest(String nameRest) {
         this.nameRest = nameRest;
     }
-    public  String getNameRest(){
+
+    public String getNameRest() {
         return nameRest;
     }
 
@@ -55,15 +58,11 @@ public class Restaurante {
         idLanc++;
 
         this.listLanches.add(new Lanche(idLanc, nomeLanche, precoLanche));
-        System.out.println(getNameRest());
-        System.out.println("\n--- LISTA DE LANCHES ---");
-        System.out.println("\n\tID\t\tLanche\t\tPreço");
-        for (Lanche lanche : listLanches) {
-            System.out.println(lanche);
-        }
+        imprimirCardapio();
     }
-//---------------------------------------------------------------------------------------------------------
-    public void removerLanche(){
+
+    //---------------------------------------------------------------------------------------------------------
+    public void removerLanche() {
 
         imprimirCardapio();
 
@@ -71,11 +70,11 @@ public class Restaurante {
         int idExcluir = tec.nextInt();
         tec.nextLine();
 
-        listLanches.remove(idExcluir -1);
+        listLanches.remove(idExcluir - 1);
     }
 
     //exibir lista de lanches
-    public void imprimirCardapio(){
+    public void imprimirCardapio() {
         System.out.println("\n--- LISTA DE LANCHES ---\n");
         System.out.println(getNameRest());
         System.out.println("\n\tID\t\tLanche\t\tPreço");
@@ -83,5 +82,4 @@ public class Restaurante {
             System.out.println(lanche);
         }
     }
-    // ------------------------------------------------------------------------------------------------------------
 }
